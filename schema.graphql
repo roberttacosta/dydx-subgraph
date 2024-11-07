@@ -1,8 +1,8 @@
 type LogOperatorSet @entity(immutable: true) {
   id: Bytes!
-  owner: Bytes! # address
-  operator: Bytes! # address
-  trusted: Boolean! # bool
+  owner: Bytes!
+  operator: Bytes!
+  trusted: Boolean!
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -10,9 +10,20 @@ type LogOperatorSet @entity(immutable: true) {
 
 type OwnershipTransferred @entity(immutable: true) {
   id: Bytes!
-  previousOwner: Bytes! # address
-  newOwner: Bytes! # address
+  previousOwner: Bytes!
+  newOwner: Bytes!
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
+}
+
+type FlashLoanTransaction @entity {
+  id: Bytes!
+  borrower: Bytes!
+  amount: BigInt!
+  actionType: String! # Tipo de operação (Withdraw, Deposit, Call)
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+  details: String # Informações adicionais da transação
 }

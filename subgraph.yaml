@@ -18,6 +18,7 @@ dataSources:
       entities:
         - LogOperatorSet
         - OwnershipTransferred
+        - FlashLoanTransaction
       abis:
         - name: dYdX
           file: ./abis/dYdX.json
@@ -26,4 +27,8 @@ dataSources:
           handler: handleLogOperatorSet
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
+      callHandlers:
+        # Substituir a referência para a função 'operate' com a assinatura completa
+        - function: operate((address,uint256)[],(uint8,uint256,(bool,uint8,uint8,uint256),uint256,uint256,address,uint256,bytes)[])
+          handler: handleOperate
       file: ./src/d-yd-x.ts
